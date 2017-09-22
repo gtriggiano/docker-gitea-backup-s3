@@ -65,7 +65,7 @@ echo "Done"
 
 unset -v DUMP_FILE
 for FILE in /backup/*; do
-  [[ $FILE -nt $DUMP_FILE ]] && DUMP_FILE=$FILE
+  [[ $FILE -nt $DUMP_FILE ]] && DUMP_FILE=$FILE;
 done
 
 move_to_s3 "/backup/${DUMP_FILE}" $S3_FILE
