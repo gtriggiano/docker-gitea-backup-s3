@@ -30,10 +30,10 @@ move_to_s3 () {
     AWS_ARGS="--endpoint-url ${S3_ENDPOINT}"
   fi
 
-  if [ "${S3_ENDPOINT}" == "**None**" ]; then
-    AWS_ARGS=""
+  if [ "${S3_PREFIX}" == "**None**" ]; then
+    S3_URI="s3://${S3_BUCKET}/${DEST_FILE}"
   else
-    AWS_ARGS="--endpoint-url ${S3_ENDPOINT}"
+    S3_URI="s3://${S3_BUCKET}/${S3_PREFIX}/${DEST_FILE}"
   fi
 
   if [ "${S3_ENCRYPT}" == "yes" ]; then
@@ -68,6 +68,6 @@ for FILE in /backup/*; do
   [[ $FILE -nt $DUMP_FILE ]] && DUMP_FILE=$FILE
 done
 
-move_to_s3 $DUMP_FILE $S3_FILE
+move_to_s3 "/backup/${DUMP_FILE}" $S3_FILE
 
 echo "Gitea backup finished"
