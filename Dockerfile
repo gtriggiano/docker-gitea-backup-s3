@@ -13,6 +13,7 @@ ENV S3_PREFIX **None**
 ENV S3_ENCRYPT no
 ENV SCHEDULE **None**
 
+ENV GITEA_USER git
 ENV GITEA_CUSTOM /data/gitea
 
 COPY --from=source-image / /
@@ -21,8 +22,6 @@ RUN sh install.sh && rm install.sh
 
 ADD run.sh run.sh
 ADD backup.sh backup.sh
-
-USER git
 
 VOLUME ["/data"]
 EXPOSE 8080
