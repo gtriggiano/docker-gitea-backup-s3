@@ -37,14 +37,14 @@ move_to_s3 () {
   fi
 
   if [ "${S3_ENCRYPT}" == "yes" ]; then
-    AWS_ARGS="${AWS_ARGS}"
+    S3_OPTS="--sse"
   else
-    AWS_ARGS="${AWS_ARGS}"
+    S3_OPTS=""
   fi
 
   echo "Uploading ${DEST_FILE} on S3..."
 
-  cat $SRC_FILE | aws $AWS_ARGS s3 cp - $S3_URI
+  cat $SRC_FILE | aws $AWS_ARGS s3 cp - $S3_URI $S3_OPTS
 
   if [ $? != 0 ]; then
     >&2 echo "Error uploading ${DEST_FILE} on S3"
