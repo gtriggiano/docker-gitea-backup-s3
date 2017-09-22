@@ -22,6 +22,8 @@ RUN sh install.sh && rm install.sh
 ADD run.sh run.sh
 ADD backup.sh backup.sh
 
+USER git
+
 VOLUME ["/data"]
 EXPOSE 8080
 CMD ["sh", "run.sh"]
