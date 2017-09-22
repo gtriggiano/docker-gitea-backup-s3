@@ -13,6 +13,8 @@ ENV S3_PREFIX **None**
 ENV S3_ENCRYPT no
 ENV SCHEDULE **None**
 
+ENV GITEA_CUSTOM /data/gitea
+
 COPY --from=source-image / /
 ADD install.sh install.sh
 RUN sh install.sh && rm install.sh
