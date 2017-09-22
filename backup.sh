@@ -59,6 +59,7 @@ BACKUP_START_TIME=$(date +"%Y-%m-%dT%H%M%SZ")
 S3_FILE="${BACKUP_START_TIME}.gitea-dump.zip"
 
 cd /backup
+su git
 echo "Dumping Gitea..."
 /app/gitea/gitea dump > /dev/null
 echo "Done"
