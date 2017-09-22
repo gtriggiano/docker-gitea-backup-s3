@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 set -e
 
@@ -68,6 +68,6 @@ for FILE in /backup/*; do
   [[ $FILE -nt $DUMP_FILE ]] && DUMP_FILE=$FILE;
 done
 
-move_to_s3 "/backup/${DUMP_FILE}" $S3_FILE
+move_to_s3 $DUMP_FILE $S3_FILE
 
 echo "Gitea backup finished"
